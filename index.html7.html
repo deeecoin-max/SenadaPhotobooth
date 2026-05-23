@@ -1,0 +1,437 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Senada Photobooth</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f8f5f2;
+      color:#222;
+    }
+
+    :root{
+      --primary:#8b5e3c;
+      --secondary:#c97b36;
+      --dark:#111;
+      --light:#ffffff;
+      --soft:#f2ebe5;
+    }
+
+    /* NAVBAR */
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:999;
+      background:rgba(17,17,17,0.85);
+      backdrop-filter:blur(10px);
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    nav h1{
+      color:white;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    nav span{
+      color:var(--secondary);
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    nav a:hover{
+      color:var(--secondary);
+    }
+
+    /* HERO */
+    .hero{
+      width:100%;
+      min-height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+      url('foto0.png');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      padding:0 8%;
+    }
+
+    .hero-content{
+      max-width:700px;
+      color:white;
+    }
+
+    .hero-content h2{
+      font-size:64px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero-content h2 span{
+      color:var(--secondary);
+    }
+
+    .hero-content p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:35px;
+      color:#eee;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:white;
+      text-decoration:none;
+      border-radius:50px;
+      font-weight:600;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+    }
+
+    /* SECTION */
+    section{
+      padding:90px 8%;
+    }
+
+    .title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .title h3{
+      font-size:40px;
+      color:var(--dark);
+    }
+
+    .title p{
+      color:#666;
+      margin-top:10px;
+    }
+
+    /* GALLERY */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .gallery img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      border-radius:20px;
+      transition:0.4s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .gallery img:hover{
+      transform:scale(1.03);
+    }
+
+    /* POSTER */
+    .poster{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .poster img{
+      width:100%;
+      border-radius:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .poster-text h3{
+      font-size:42px;
+      margin-bottom:20px;
+      color:var(--primary);
+    }
+
+    .poster-text p{
+      line-height:1.9;
+      color:#555;
+      margin-bottom:25px;
+    }
+
+    /* PRICE */
+    .pricing-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .price-card{
+      background:white;
+      border-radius:25px;
+      padding:40px 30px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      transition:0.3s;
+      border:2px solid transparent;
+    }
+
+    .price-card:hover{
+      transform:translateY(-8px);
+      border-color:var(--secondary);
+    }
+
+    .price-card h4{
+      font-size:28px;
+      margin-bottom:10px;
+      color:var(--primary);
+    }
+
+    .price{
+      font-size:42px;
+      font-weight:700;
+      margin:20px 0;
+      color:var(--dark);
+    }
+
+    .price-card ul{
+      list-style:none;
+      margin-bottom:30px;
+    }
+
+    .price-card ul li{
+      margin:12px 0;
+      color:#555;
+    }
+
+    /* LOCATION */
+    .location{
+      background:linear-gradient(135deg,#111,#3a2618);
+      color:white;
+      border-radius:30px;
+      padding:50px;
+      text-align:center;
+    }
+
+    .location h3{
+      font-size:40px;
+      margin-bottom:20px;
+    }
+
+    .location p{
+      margin:12px 0;
+      font-size:18px;
+      color:#ddd;
+    }
+
+    .wa-btn{
+      margin-top:30px;
+      display:inline-block;
+      padding:16px 38px;
+      background:#25D366;
+      color:white;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .wa-btn:hover{
+      transform:scale(1.05);
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:30px;
+      background:#111;
+      color:#bbb;
+      margin-top:80px;
+    }
+
+    @media(max-width:900px){
+
+      .hero-content h2{
+        font-size:46px;
+      }
+
+      .poster{
+        grid-template-columns:1fr;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h1>Senada <span>Photobooth</span></h1>
+
+    <div>
+      <a href="#gallery">Gallery</a>
+      <a href="#poster">Poster</a>
+      <a href="#harga">Harga</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Abadikan Momen Terbaik Bersama <span>Senada Photobooth</span></h2>
+
+      <p>
+        “Photobooth ini hadir dengan nuansa klasik yang hangat dan elegan, menghadirkan suasana timeless
+         yang mampu menghidupkan setiap momen menjadi lebih berkesan. Perpaduan detail vintage, warna lembut,
+         dan sentuhan estetik dirancang untuk menciptakan pengalaman foto yang penuh cerita dan kenangan.”
+      </p>
+
+      <a href="#harga" class="btn">Lihat Harga</a>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="title">
+      <h3>Hasil Photobooth</h3>
+      <p>Beberapa hasil dokumentasi terbaik dari customer kami</p>
+    </div>
+
+    <div class="gallery">
+
+      <img src="foto1.png" alt="">
+
+      <img src="foto2.png" alt="">
+
+      <img src="foto3.png" alt="">
+
+    </div>
+  </section>
+
+  <!-- POSTER -->
+  <section id="poster">
+    <div class="poster">
+
+      <img src="fotopos.png" alt="">
+
+      <div class="poster-text">
+        <h3>Photobooth Premium & Elegant</h3>
+
+        <p>
+          Jadikan acara kamu lebih hidup dengan photobooth modern berkonsep nuansa klasik.
+          Dengan perpaduan warna putih, hitam, coklat, dan sentuhan oranye keemasan,
+          Senada Photobooth menghadirkan suasana classy dan profesional untuk setiap saat.
+        </p>
+
+        <p>
+          ✨ Unlimited gaya seru <br>
+          ✨ Kualitas foto HD <br>
+          ✨ Properti keren & aesthetic <br>
+          
+          *JAM OPERASIONAL :*
+          Senin - Sabtu : 08.00 - 14.00 WIB
+        </p>
+
+        <a href="#kontak" class="btn">Booking Sekarang</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HARGA -->
+  <section id="harga">
+
+    <div class="title">
+      <h3>Paket Harga</h3>
+    </div>
+
+    
+
+        <a href="#kontak" class="btn">Pesan Sekarang</a>
+      </div>
+
+      <div class="price-card">
+        <h4>Nikmati harga murah dan hasil ga murahan</h4>
+        <div class="price">Rp7.000</div>
+
+        <ul>
+          <li>Rp7.000 per 5 menit</li>
+          <li>MAKSIMAL 3 ORANG</li>
+          <li> AKSESORIS : </li>
+          <li> 1.Gitar </li>
+          <li> 2.Bandana </li>
+          <li> 3.Kacamata</li>
+          <li> 4.Topi</li>
+         </li> 5.Proops</ul>   
+        
+    </div>
+
+  </section>
+
+  <!-- LOCATION -->
+  <section id="kontak">
+
+    <div class="location">
+
+      <h3>Lokasi & Kontak</h3>
+
+      <p><strong>Senada Photobooth</strong></p>
+
+      <p>📍 JL.Susukan - Ciawigebang, RT.01/RW.01,Ciputat,Kec.Ciawigebang,Kab.Kuningan,Jawa Barat 45591 </p>
+
+      <p>🏠 SMK PGRI CIAWIGEBANG (Ruang PK atas)</p>
+
+      <a 
+      class="wa-btn"
+      target="_blank"
+      href="https://wa.me/6285188384148?text=Permisi%20kak%20saya%20mau%20Photobooth%20ditempat%20kakanyaa%20nih">
+      Chat WhatsApp
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Senada Photobooth — Elegant Premium Photobooth Service
+  </footer>
+
+</body>
+</html>
+```
